@@ -44,6 +44,8 @@ class WebpackLoader(object):
                          for regex in self.config['ignores'])
             if not ignore:
                 chunk['url'] = self.get_chunk_url(chunk)
+                if self.config['GZIP']:
+                    chunk['url'] += '.gz'
                 yield chunk
 
     def get_chunk_url(self, chunk):
